@@ -1,6 +1,13 @@
 import pytest
 
 
+def get_results(data):
+    """Helper: handles both paginated {results:[...]} and plain list responses."""
+    if isinstance(data, list):
+        return data
+    return data.get("results", [])
+
+
 class TestPartsGet:
     """
     TC_API_001 to TC_API_010
@@ -19,16 +26,14 @@ class TestPartsGet:
         name = created_part["name"]
         response = api_client.get(part_url, params={"search": name})
         assert response.status_code == 200
-        data = response.json()
-        results = data.get("results", data)
+        results = get_results(response.json())
         assert any(p["name"] == name for p in results)
 
     def test_TC_API_003_filter_by_category(self, api_client, part_url, test_category_id, created_part):
         """TC_API_003: Filter by category returns only parts in that category."""
         response = api_client.get(part_url, params={"category": test_category_id})
         assert response.status_code == 200
-        data = response.json()
-        results = data.get("results", data)
+        results = get_results(response.json())
         for part in results:
             assert part["category"] == test_category_id
 
@@ -36,8 +41,7 @@ class TestPartsGet:
         """TC_API_004: Filter active=true returns only active parts."""
         response = api_client.get(part_url, params={"active": True})
         assert response.status_code == 200
-        data = response.json()
-        results = data.get("results", data)
+        results = get_results(response.json())
         for part in results:
             assert part["active"] is True
 
@@ -45,8 +49,7 @@ class TestPartsGet:
         """TC_API_005: Filter active=false returns only inactive parts."""
         response = api_client.get(part_url, params={"active": False})
         assert response.status_code == 200
-        data = response.json()
-        results = data.get("results", data)
+        results = get_results(response.json())
         for part in results:
             assert part["active"] is False
 
@@ -54,16 +57,14 @@ class TestPartsGet:
         """TC_API_006: Pagination with limit=5 returns max 5 results."""
         response = api_client.get(part_url, params={"limit": 5, "offset": 0})
         assert response.status_code == 200
-        data = response.json()
-        results = data.get("results", data)
+        results = get_results(response.json())
         assert len(results) <= 5
 
     def test_TC_API_007_filter_assembly_parts(self, api_client, part_url):
         """TC_API_007: Filter assembly=true returns only assembly parts."""
         response = api_client.get(part_url, params={"assembly": True})
         assert response.status_code == 200
-        data = response.json()
-        results = data.get("results", data)
+        results = get_results(response.json())
         for part in results:
             assert part["assembly"] is True
 
@@ -71,8 +72,7 @@ class TestPartsGet:
         """TC_API_008: Filter purchaseable=true returns only purchaseable parts."""
         response = api_client.get(part_url, params={"purchaseable": True})
         assert response.status_code == 200
-        data = response.json()
-        results = data.get("results", data)
+        results = get_results(response.json())
         for part in results:
             assert part["purchaseable"] is True
 
