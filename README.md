@@ -95,6 +95,44 @@ pytest tests/ -v
 
 ---
 
+## Automation Implementation Status
+
+### API Automation (pytest + requests)
+**Status:** ✅ Complete
+
+#### Files Created:
+- `submission/automation/api/requirements.txt`
+- `submission/automation/api/conftest.py` - Shared fixtures and configuration
+- `submission/automation/api/tests/test_parts_get.py` - TC_API_001-010 (GET /api/part/)
+- `submission/automation/api/tests/test_parts_post.py` - TC_API_011-023 (POST /api/part/)
+- `submission/automation/api/tests/test_parts_patch_delete.py` - TC_API_024-043 (PATCH/DELETE /api/part/{id}/)
+- `submission/automation/api/tests/test_categories.py` - TC_API_044-060 (Part Categories)
+
+**Total API Test Cases Automated:** 60 test cases covering:
+- GET operations with filtering, pagination, and error handling
+- POST operations with validation and boundary testing
+- PATCH operations for updates
+- DELETE operations and cascade behaviors
+- Category management endpoints
+
+### UI Automation (Playwright)
+**Status:** ✅ Partial Implementation
+
+#### Files Created:
+- `submission/automation/ui/requirements.txt`
+- `submission/automation/ui/tests/conftest.py` - Browser setup and authentication fixtures
+- `submission/automation/ui/tests/test_part_creation.py` - Basic part creation flows
+
+**Coverage:** Implements foundational UI test cases for:
+- Navigation to Parts section
+- Part creation form interactions
+- Form validation
+- Basic CRUD operations
+
+**Note:** Additional UI test coverage can be expanded based on the 96 manual UI test cases documented in `submission/test-cases/ui-manual-tests.md`
+
+
+
 ## References
 
 - https://docs.inventree.org/en/stable/part/
