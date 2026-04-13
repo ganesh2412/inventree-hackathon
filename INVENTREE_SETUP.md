@@ -1,6 +1,38 @@
 # InvenTree Setup Guide for Testing
 
-## Quick Setup Commands
+## 
+
+## Step 0: Clone Repository (First Time Only)
+
+**IMPORTANT:** Before running tests, you need to clone the repository to your local machine!
+
+```bash
+# Navigate to your preferred directory
+cd ~/Desktop  # or ~/Documents or wherever you want
+
+# Clone the repository
+git clone https://github.com/ganesh2412/inventree-hackathon.git
+
+# Navigate into the repository
+cd inventree-hackathon
+
+# Verify files exist
+ls -la submission/automation/
+```
+
+You should see:
+```
+submission/automation/
+├── api/
+│   ├── requirements.txt
+│   ├── conftest.py
+│   └── tests/
+└── ui/
+    ├── requirements.txt
+    └── tests/
+```
+
+Quick Setup Commands
 
 Based on your Docker setup, here are the exact commands to get InvenTree ready for testing:
 
