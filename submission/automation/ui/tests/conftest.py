@@ -22,8 +22,8 @@ def inventree_page(page: Page):
 def authenticated_page(inventree_page: Page):
   """Log in to InvenTree and return authenticated page."""
   # Update credentials based on your test environment
-  inventree_page.fill("input[name='username']", "admin")
-  inventree_page.fill("input[name='password']", "admin")
+  inventree_page.fill("input[placeholder='Your username']", "admin")
+  inventree_page.fill("input[placeholder='Your password']", "admin")
   inventree_page.click("button[type='submit']")
   inventree_page.wait_for_url("**/index/**", timeout=5000)
   return inventree_page
