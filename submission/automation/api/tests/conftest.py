@@ -5,8 +5,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-BASE_URL = os.getenv("INVENTREE_BASE_URL", "http://localhost:8000")
-API_TOKEN = os.getenv("INVENTREE_API_TOKEN", "your-api-token-here")
+BASE_URL = os.getenv("INVENTREE_BASE_URL", "http://localhost")
+API_TOKEN = os.getenv("INVENTREE_API_TOKEN", "inv-c4e3eb6724b125b6c2ca17a68204e9463b97d2e1-20260413")
 
 
 @pytest.fixture(scope="session")
@@ -53,8 +53,10 @@ def test_category_id(api_client, category_url):
 @pytest.fixture()
 def created_part(api_client, part_url, test_category_id):
     """Creates a part for use in tests. Cleaned up after each test."""
+    import uuid
+    unique_name = f"Hackathon Test Part {uuid.uuid4().hex[:8]}"
     payload = {
-        "name": "Hackathon Test Part",
+        "name": unique_name,
         "description": "Auto-created for testing",
         "category": test_category_id,
         "active": True,
