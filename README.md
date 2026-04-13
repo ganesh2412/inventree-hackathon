@@ -133,6 +133,20 @@ pytest tests/ -v
 
 
 
+---
+
+## Demo & Resources
+
+📹 **Demo Video:** [Coming Soon - Will be added before deadline]
+
+📚 **Complete Demo Guide:** [submission/DEMO_GUIDE.md](submission/DEMO_GUIDE.md)
+- Step-by-step test execution instructions
+- 15-minute presentation script
+- Troubleshooting tips
+- Pre-demo checklist
+
+
+
 ## References
 
 - https://docs.inventree.org/en/stable/part/
