@@ -14,7 +14,7 @@ def browser_context_args(browser_context_args):
 @pytest.fixture
 def inventree_page(page: Page):
   """Navigate to InvenTree login page."""
-  page.goto("http://localhost:8000")
+  page.goto("http://localhost")
   return page
 
 
